@@ -1,36 +1,22 @@
-# docker-nginx-simple
-Simplest possible Nginx webserver running on top of Alpine Linux in a container
+# docker-nginx-php-mysql
+Simple docker setup based off of nginx-simple, with mysql and php running in separate containers. PHP runs as PHP-FPM on port 9000, and has pdo_mysql installed for easy db connection management.
 
-[Nginx](http://nginx.org) is a powerfull web server.
+Has 4 services:
+- nginx
+- php
+- mysqldb
+- adminer
 
-This container may be used to deliver static content only.
+"adminer" is a simple phpmyadmin-like db admin interface, in this case available at port 8081.
+nginx is available at port 8090.
 
 # Building the container
 
-Clone this repository, go into the directory and run a command like: `docker build --tag nginx-simple .`
-
-One can also use the docker-compose.yml file provided here: `docker-compose build`
-
-# Using the container
+Clone this repository, and use the docker-compose.yml file provided here: `docker-compose build`
 
 ## Normal usage
 
-Use a command like this one:
-
-  `docker run --detach --rm=true --volumes ./wwwroot/:/var/www/ --name=nginx --hostname=nginx nginx-simple`
-
-Or use docker-compose:
-
   `docker-compose up -d`
-
-## Debugging
-
-Use a command like this one:
-
-  `docker run -it --rm=true --volumes ./wwwroot/:/var/www/ --name=nginx --hostname=nginx --entrypoint=sh nginx-simple`
-
-Or use docker-compose:
-
-  `docker-compose up`
+  `docker-compose down`
 
 
