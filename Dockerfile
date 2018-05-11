@@ -1,9 +1,8 @@
-FROM alpine:3.6
-
-RUN apk -U add nginx \
-&& touch /var/www/index.html
+FROM nginx:alpine
 
 ADD nginx.conf /etc/nginx/nginx.conf
 ADD nginx.default /etc/nginx/conf.d/default.conf
 
-ENTRYPOINT nginx
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \ && ln -sf /dev/stderr /var/log/nginx/error.log 
+CMD ["nginx-debug", "-g", "daemon off;"]
+
